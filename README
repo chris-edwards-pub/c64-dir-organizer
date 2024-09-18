@@ -1,0 +1,44 @@
+"""
+This script organizes files into directories based on their file types and the first character of their filenames.
+It supports moving or copying files from a source directory to a destination directory, with options for recursion,
+verbosity, and dry-run simulation.
+
+Usage:
+    python script_name.py [source] [destination] [-a {move,copy}] [-r] [-v] [-d]
+
+Arguments:
+    source (str): Source directory containing the files to be organized.
+    destination (str): Destination base directory where files will be organized.
+    -a, --action (str): Action to perform: 'move' or 'copy' files (default: 'move').
+    -r, --recursive: Recursively search for files in the source directory (default: False).
+    -v, --verbose: Enable verbose output showing each operation.
+    -d, --dry-run: Simulate the script actions without making any changes.
+    -h, --help: Show the help message and exit.
+
+Functionality:
+    - The script defines a set of main directories and their associated file extensions.
+    - It walks through the source directory (recursively or non-recursively) to find files matching the defined extensions.
+    - Files are organized into subdirectories within the main directories based on the first character of their filenames.
+      If the first character is not an alphabet, they are placed in a '0_9' directory.
+    - The script can either move or copy the files based on the specified action.
+    - Verbose mode provides detailed output of each operation.
+    - Dry-run mode simulates the actions without making any changes to the filesystem.
+
+Functions:
+    - create_directory_if_needed(path): Creates a directory if it doesn't exist and prints the action if verbose or dry-run is enabled.
+    - move_file(source, destination_dir): Handles file move with overwrite confirmation.
+    - copy_file(source, destination_dir): Handles file copy.
+"""
+
+# Define the main directories and their associated file extensions
+main_dirs = {
+    'D64': '.d64',
+    'G64': '.g64',
+    'PRG': '.prg',
+    'T64': '.t64',
+    'F64': '.f64',
+    'CRT': '.crt',
+    'TAP': '.tap',
+    'D81': '.d81',
+    'D71': '.d71',
+}
